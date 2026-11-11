@@ -1,139 +1,53 @@
-<img src="./.github/screenshots/header.png#gh-light-mode-only" width="100%" alt="Header light mode"/>
-<img src="./.github/screenshots/header-dark.png#gh-dark-mode-only" width="100%" alt="Header dark mode"/>
+# Digital Factory
 
-___
+Plateforme de support client omicanale auto-hébergée de [Digital Factory](https://digitalfactory.sn), destinée à centraliser les conversations (chat en direct, e-mail, WhatsApp, Facebook, Instagram, etc.) et l’application mobile associée.
 
-# Chatwoot
+Ce dépôt est une copie de [Chatwoot](https://github.com/chatwoot/chatwoot) (branche `develop`), personnalisée à la marque Digital Factory sur la branche `dfactory-branding`.
 
-The modern customer support platform, an open-source alternative to Intercom, Zendesk, Salesforce Service Cloud etc.
+**Chatwoot** © 2017-2026, Chatwoot Inc. — publié sous licence MIT (voir [LICENSE](./LICENSE)). Le dossier [`enterprise/`](./enterprise) reste sous la [licence propriétaire Chatwoot](./enterprise/LICENSE) et n’est pas modifié dans cette branche.
 
-<p>
-  <img src="https://img.shields.io/circleci/build/github/chatwoot/chatwoot" alt="CircleCI Badge">
-    <a href="https://hub.docker.com/r/chatwoot/chatwoot/"><img src="https://img.shields.io/docker/pulls/chatwoot/chatwoot" alt="Docker Pull Badge"></a>
-  <a href="https://hub.docker.com/r/chatwoot/chatwoot/"><img src="https://img.shields.io/docker/cloud/build/chatwoot/chatwoot" alt="Docker Build Badge"></a>
-  <img src="https://img.shields.io/github/commit-activity/m/chatwoot/chatwoot" alt="Commits-per-month">
-  <a title="Crowdin" target="_self" href="https://chatwoot.crowdin.com/chatwoot"><img src="https://badges.crowdin.net/e/37ced7eba411064bd792feb3b7a28b16/localized.svg"></a>
-  <a href="https://discord.gg/cJXdrwS"><img src="https://img.shields.io/discord/647412545203994635" alt="Discord"></a>
-  <a href="https://status.chatwoot.com"><img src="https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2Fchatwoot%2Fstatus%2Fmaster%2Fapi%2Fchatwoot%2Fuptime.json" alt="uptime"></a>
-  <a href="https://status.chatwoot.com"><img src="https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2Fchatwoot%2Fstatus%2Fmaster%2Fapi%2Fchatwoot%2Fresponse-time.json" alt="response time"></a>
-  <a href="https://artifacthub.io/packages/helm/chatwoot/chatwoot"><img src="https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/artifact-hub" alt="Artifact HUB"></a>
-</p>
+## Marque
 
+- Nom affiché : **Digital Factory**
+- Couleurs officielles : bleu `#163F83`, jaune `#F4C644`
+- Logos : originaux de la charte, proportions conservées (pas de redessin)
+- Identifiants d’installation par défaut : `INSTALLATION_NAME`, `BRAND_NAME`, `LOGO`, `LOGO_DARK`, `LOGO_THUMBNAIL`, `BRAND_URL`, `WIDGET_BRAND_URL`, `TERMS_URL`, `PRIVACY_URL`, `DISPLAY_MANIFEST` dans [`config/installation_config.yml`](./config/installation_config.yml)
 
-<p>
-  <a href="https://heroku.com/deploy?template=https://github.com/chatwoot/chatwoot/tree/master" alt="Deploy to Heroku">
-     <img width="150" alt="Deploy" src="https://www.herokucdn.com/deploy/button.svg"/>
-  </a>
-  <a href="https://marketplace.digitalocean.com/apps/chatwoot?refcode=f2238426a2a8" alt="Deploy to DigitalOcean">
-     <img width="200" alt="Deploy to DO" src="https://www.deploytodo.com/do-btn-blue.svg"/>
-  </a>
-</p>
+L’application mobile rebrandée se trouve sur [`digital221/chatwoot-mobile-app`](https://github.com/digital221/chatwoot-mobile-app), branche `dfactory-branding` (identifiant `sn.digitalfactory.support`, aide : https://digitalfactory.sn).
 
-<img src="./.github/screenshots/dashboard.png#gh-light-mode-only" width="100%" alt="Chat dashboard dark mode"/>
-<img src="./.github/screenshots/dashboard-dark.png#gh-dark-mode-only" width="100%" alt="Chat dashboard"/>
+Le bandeau « Propulsé par / Powered by » du widget et des e-mails est conservé (fonctionnalité de masquage réservée à l’édition Enterprise). Le nom affiché est Digital Factory.
 
----
+## Licence
 
-Chatwoot is the modern, open-source, and self-hosted customer support platform designed to help businesses deliver exceptional customer support experience. Built for scale and flexibility, Chatwoot gives you full control over your customer data while providing powerful tools to manage conversations across channels.
+- **Édition communautaire** (tout le dépôt hors `enterprise/`) : licence MIT. Vous pouvez l’utiliser, la modifier, la déployer et la redistribuer, à condition de conserver la notice de copyright et la licence.
+- **Dossier `enterprise/`** : licence propriétaire Chatwoot. Son usage en production exige un abonnement Enterprise Chatwoot valide. Cette branche ne modifie pas ce dossier et ne débloque aucune fonction payante (`disable_branding`, plans, etc.).
 
-### ✨ Captain – AI Agent for Support
+Voir aussi la [FAQ officielle Chatwoot](https://developers.chatwoot.com/self-hosted/faq) sur la personnalisation de la marque et les usages encouragés.
 
-Supercharge your support with Captain, Chatwoot’s AI agent. Captain helps automate responses, handle common queries, and reduce agent workload—ensuring customers get instant, accurate answers. With Captain, your team can focus on complex conversations while routine questions are resolved automatically. Read more about Captain [here](https://chwt.app/captain-docs).
+## Déploiement (auto-hébergé)
 
-### 💬 Omnichannel Support Desk
+Aucun déploiement n’est effectué depuis cette branche. Pour un premier environnement, prévoir :
 
-Chatwoot centralizes all customer conversations into one powerful inbox, no matter where your customers reach out from. It supports live chat on your website, email, Facebook, Instagram, Twitter, WhatsApp, Telegram, Line, SMS etc.
+1. Un serveur Linux avec Docker et Docker Compose
+2. PostgreSQL 16 avec l’extension pgvector (l’image `pgvector/pgvector:pg16` est déjà référencée dans `docker-compose.production.yaml`)
+3. Redis
+4. Un sous-domaine suggéré : `support.digitalfactory.sn` (à pointer vers le service, puis renseigner `FRONTEND_URL`)
+5. Un service SMTP (variables `SMTP_*` et `MAILER_SENDER_EMAIL` dans `.env`)
+6. Un stockage des pièces jointes : local (`ACTIVE_STORAGE_SERVICE=local`) ou objet compatible S3
+7. Une clé secrète Rails (`SECRET_KEY_BASE`) et un mot de passe Redis
 
-### 📚 Help center portal
+Point de départ : copier [`.env.example`](./.env.example) vers `.env`, construire l’image à partir de ce dépôt (ne pas utiliser l’image publique `chatwoot/chatwoot` si l’on veut la marque Digital Factory), puis suivre le [guide officiel de déploiement](https://developers.chatwoot.com/self-hosted/deployment/requirements).
 
-Publish help articles, FAQs, and guides through the built-in Help Center Portal. Enable customers to find answers on their own, reduce repetitive queries, and keep your support team focused on more complex issues.
+```bash
+# Exemple — construire l’image depuis cette branche, puis lancer la stack de production
+docker compose -f docker-compose.production.yaml build
+docker compose -f docker-compose.production.yaml up -d
+```
 
-### 🗂️ Other features
+Le fichier `docker-compose.production.yaml` d’origine pointe vers `chatwoot/chatwoot:latest` : il faudra le faire pointer vers l’image construite localement avant un vrai déploiement.
 
-#### Collaboration & Productivity
+Documentation amont : [developers.chatwoot.com](https://developers.chatwoot.com/).
 
-- Private Notes and @mentions for internal team discussions.
-- Labels to organize and categorize conversations.
-- Keyboard Shortcuts and a Command Bar for quick navigation.
-- Canned Responses to reply faster to frequently asked questions.
-- Auto-Assignment to route conversations based on agent availability.
-- Multi-lingual Support to serve customers in multiple languages.
-- Custom Views and Filters for better inbox organization.
-- Business Hours and Auto-Responders to manage response expectations.
-- Teams and Automation tools for scaling support workflows.
-- Agent Capacity Management to balance workload across the team.
+## Branches
 
-#### Customer Data & Segmentation
-- Contact Management with profiles and interaction history.
-- Contact Segments and Notes for targeted communication.
-- Campaigns to proactively engage customers.
-- Custom Attributes for storing additional customer data.
-- Pre-Chat Forms to collect user information before starting conversations.
-
-#### Integrations
-- Slack Integration to manage conversations directly from Slack.
-- Dialogflow Integration for chatbot automation.
-- Dashboard Apps to embed internal tools within Chatwoot.
-- Shopify Integration to view and manage customer orders right within Chatwoot.
-- Use Google Translate to translate messages from your customers in realtime.
-- Create and manage Linear tickets within Chatwoot.
-
-#### Reports & Insights
-- Live View of ongoing conversations for real-time monitoring.
-- Conversation, Agent, Inbox, Label, and Team Reports for operational visibility.
-- CSAT Reports to measure customer satisfaction.
-- Downloadable Reports for offline analysis and reporting.
-
-
-## Documentation
-
-Detailed documentation is available at [chatwoot.com/help-center](https://www.chatwoot.com/help-center).
-
-## Translation process
-
-The translation process for Chatwoot web and mobile app is managed at [https://translate.chatwoot.com](https://translate.chatwoot.com) using Crowdin. Please read the [translation guide](https://www.chatwoot.com/docs/contributing/translating-chatwoot-to-your-language) for contributing to Chatwoot.
-
-## Branching model
-
-We use the [git-flow](https://nvie.com/posts/a-successful-git-branching-model/) branching model. The base branch is `develop`.
-If you are looking for a stable version, please use the `master` or tags labelled as `v1.x.x`.
-
-## Deployment
-
-### Heroku one-click deploy
-
-Deploying Chatwoot to Heroku is a breeze. It's as simple as clicking this button:
-
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/chatwoot/chatwoot/tree/master)
-
-Follow this [link](https://www.chatwoot.com/docs/environment-variables) to understand setting the correct environment variables for the app to work with all the features. There might be breakages if you do not set the relevant environment variables.
-
-
-### DigitalOcean 1-Click Kubernetes deployment
-
-Chatwoot now supports 1-Click deployment to DigitalOcean as a kubernetes app.
-
-<a href="https://marketplace.digitalocean.com/apps/chatwoot?refcode=f2238426a2a8" alt="Deploy to DigitalOcean">
-  <img width="200" alt="Deploy to DO" src="https://www.deploytodo.com/do-btn-blue.svg"/>
-</a>
-
-### Other deployment options
-
-For other supported options, checkout our [deployment page](https://chatwoot.com/deploy).
-
-## Security
-
-Looking to report a vulnerability? Please refer our [SECURITY.md](./SECURITY.md) file.
-
-## Community
-
-If you need help or just want to hang out, come, say hi on our [Discord](https://discord.gg/cJXdrwS) server.
-
-## Contributors
-
-Thanks goes to all these [wonderful people](https://www.chatwoot.com/docs/contributors):
-
-<a href="https://github.com/chatwoot/chatwoot/graphs/contributors"><img src="https://opencollective.com/chatwoot/contributors.svg?width=890&button=false" /></a>
-
-
-*Chatwoot* &copy; 2017-2026, Chatwoot Inc - Released under the MIT License.
+Le modèle de branches amont est git-flow. La branche de base du fork est `develop`. Les personnalisations Digital Factory sont isolées sur `dfactory-branding`.
